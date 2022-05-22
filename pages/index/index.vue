@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<mescroll-body ref="mescrollRef" @init="mescrollInit" @down="downCallback" @up="upCallback"
-						 :up="{auto:false}">
+						 :up="{auto:false}" :down="{auto:true}">
 			<password v-for="(item,index) in dataList" :appli="item" @delete="delPass"></password>
 			<!-- <view v-for="data in dataList"> 数据列表... </view> -->
 		</mescroll-body>

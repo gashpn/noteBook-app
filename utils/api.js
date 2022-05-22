@@ -1,6 +1,7 @@
 // export let BASE_URL = 'http://localhost:8097/note'
 // export let BASE_URL = 'http://172.28.224.1:8097/note'
-export let BASE_URL = 'http://106.55.42.110:8080/note'
+// export let BASE_URL = 'http://106.55.42.110:8080/note'
+export let BASE_URL = 'http://www.yiman.info:8080/note'
 import { encryptDes,decryptDes } from './des.js'
 class Api {
 	uploadFile(url, path, cb) {
