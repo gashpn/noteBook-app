@@ -45,6 +45,7 @@
 				this.$api.post('/app/application/passwordList',this.page).then((res)=>{
 					// console.log(res)
 					let response = JSON.parse(res)
+					console.log(response)
 					if (this.page.pageNum == 1) this.dataList = []; //如果是第一页需手动置空列表
 					this.dataList = this.dataList.concat(response.records); //追加新数据
 					

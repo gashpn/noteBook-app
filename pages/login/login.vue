@@ -67,7 +67,7 @@
 						console.log(res)
 						let response = JSON.parse(res)
 						if(response.code === '0000'){
-							uni.setStorageSync('token',response.result[0].token)
+							uni.setStorageSync('token',response.result.token)
 							uni.showToast({
 								icon:'none',
 								title:'登录成功'

@@ -1,33 +1,26 @@
 <template>
 	<view>
 		<view class="main-box" @longpress="openChoose()">
-			<image class="image-style" :src="appli.url?appli.url:'/static/logo.png'"></image>
+			<image class="image-style" :src="appli.logo?appli.logo:'/static/logo.png'"></image>
 			<view>
 				<view class="name-style">{{appli.application}}</view>
 				<view class="password-style">账户：{{appli.username}}</view>
-				<view class="password-style">密码：{{appli.password}}</view>
+				<!-- <view class="password-style">密码：{{appli.password}}</view> -->
+				<u--input style="margin-left: -14rpx;" border="false" :disabled="true" disabledColor="#FFFFFF" :value="appli.password" :password="password">
+					<template slot="suffix">
+						<!-- <u-code ref="uCode" @change="codeChange" seconds="20" changeText="X秒重新获取哈哈哈"></u-code> -->
+						<!-- <u-button @tap="getCode" :text="tips" type="success" size="mini"></u-button> -->
+						<u-icon v-if="!password" name="eye-off" color="#828282" size="20" @click="password=true"></u-icon>
+						<u-icon v-if="password" name="eye" color="#828282" size="20" @click="password=false"></u-icon>
+					</template>
+				</u--input>
 			</view>
 		</view>
 		<view class="line"></view>
 		<view class="choose-style" v-show="choose">
-			<view style="line-height: 48rpx;" @click="updatePass(appli)">修改</view>
-			<view style="line-height: 48rpx;" @click="deletePass(appli)">删除</view>
+			<view style="line-height: 64rpx;" @click="updatePass(appli)">修 改</view>
+			<view style="line-height: 64rpx;" @click="deletePass(appli)">删 除</view>
 		</view>
-
-		<uni-popup ref="popup" :mask-click="false" type="bottom" :animation="false">
-			<view class="pop-style">
-				<uni-forms ref="form" :modelValue="formData" :rules="rules">
-					<uni-forms-item label="账户" name="name">
-						<uni-easyinput type="text" v-model="appli.username" placeholder="请输入姓名" />
-					</uni-forms-item>
-					<uni-forms-item label="密码" name="email">
-						<input class="input" v-model="appli.password" type="text" placeholder="请输入用户名"
-							@input="binddata('email',appli.password)" />
-					</uni-forms-item>
-				</uni-forms>
-				<button @click="submit">提交</button>
-			</view>
-		</uni-popup>
 	</view>
 
 </template>
@@ -59,6 +52,7 @@
 		},
 		data() {
 			return {
+				password:true,
 				choose: false,
 				formData: {
 					name: 'LiMing',
@@ -89,39 +83,50 @@
 			}
 		},
 		methods: {
+			getPasswordDetail(){
+				this.$api.post('/app/application/deletePass', param).then((res) => {
+					console.log(res)
+					if (res) {
+						this.choose = false
+						uni.showToast({
+							icon: 'none',
+							title: '删除成功'
+						})
+						this.$emit('delete', 'delete')
+					}
+				})
+			},
 			openChoose() {
 				this.choose = true
 			},
 			deletePass(data) {
 				// console.log(data)
-				let param ={
-					id:data.id
+				let param = {
+					id: data.id
 				}
-				this.$api.post('/app/application/deletePass',param).then((res)=>{
+				this.$api.post('/app/application/deletePass', param).then((res) => {
 					console.log(res)
-					if(res){
+					if (res) {
 						this.choose = false
 						uni.showToast({
-							icon:'none',
-							title:'删除成功'
+							icon: 'none',
+							title: '删除成功'
 						})
-						this.$emit('delete','delete')
+						this.$emit('delete', 'delete')
 					}
 				})
 			},
 			updatePass(data) {
-				this.open()
+				this.open(data)
 				console.log(data)
 			},
-			open() {
-				this.$refs.popup.open('top')
-				this.choose = false
+			open(data) {
+				uni.navigateTo({
+					url:'/pages/addPassword/addPassword?id='+data.id+'&application='+data.application+'&username='+data.username+'&password='+data.password+'&remark='+data.remark+'&logo='+data.logo
+				})
 			},
-			close() {
-				this.$refs.popup.close()
-			},
-			submit(){
-				
+			submit() {
+
 			}
 		}
 	}
@@ -159,7 +164,7 @@
 	.choose-style {
 		z-index: 999;
 		position: absolute;
-		width: 100rpx;
+		width: 180rpx;
 		background-color: #dadada;
 		text-align: center;
 		margin-left: 400rpx;
