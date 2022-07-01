@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="../../static/huafei.jpg"></image>
+		<image class="logo" src="../../static/logo.png"></image>
 		<form @submit="formSubmit" @reset="formReset">
 			<view class="uni-form-item">
 				<view class="title">

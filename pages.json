@@ -6,7 +6,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "密码"
+				"navigationBarTitleText": "密码",
+				"navigationStyle":"custom"
 			}
 		}
 	    ,{

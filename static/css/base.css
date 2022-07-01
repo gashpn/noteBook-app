@@ -1,3 +1,48 @@
 .margin-common-16{
 	margin: 32rpx 32rpx;
 }
+
+.font-grey{
+	color: #bdbdbd;
+}
+
+.font-blue{
+	color: #2979FF;
+}
+
+.font-white{
+	color: #ffffff;
+}
+
+.font-size-16{
+	font-size: 32rpx;
+}
+
+.font-size-14{
+	font-size: 28rpx;
+}
+
+.font-size-12{
+	font-size: 24rpx;
+}
+
+.font-size-18{
+	font-size: 36rpx;
+}
+
+.font-size-10{
+	font-size: 20rpx;
+}
+
+.flex-row{
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+}
+
+.flex-row-between{
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	justify-content: space-between;
+}

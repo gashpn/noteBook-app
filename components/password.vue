@@ -4,7 +4,7 @@
 			<image class="image-style" :src="appli.logo?appli.logo:'/static/logo.png'"></image>
 			<view>
 				<view class="name-style">{{appli.application}}</view>
-				<view class="password-style">账户：{{appli.username}}</view>
+				<view class="password-style font-blue">账户：{{appli.username}}</view>
 				<!-- <view class="password-style">密码：{{appli.password}}</view> -->
 				<u--input style="margin-left: -14rpx;" border="false" :disabled="true" disabledColor="#FFFFFF" :value="appli.password" :password="password">
 					<template slot="suffix">
@@ -14,6 +14,7 @@
 						<u-icon v-if="password" name="eye" color="#828282" size="20" @click="password=false"></u-icon>
 					</template>
 				</u--input>
+				<view class="password-style font-grey">备注：{{appli.remark}}</view>
 			</view>
 		</view>
 		<view class="line"></view>
