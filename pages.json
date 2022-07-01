@@ -27,9 +27,18 @@
 				"navigationStyle":"custom"
             }
             
-        }
+        }/* 
         ,{
             "path" : "pages/login_new/login_new",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        } */
+        ,{
+            "path" : "pages/words/words",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
